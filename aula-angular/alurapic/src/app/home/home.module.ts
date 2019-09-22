@@ -1,3 +1,5 @@
+import { SignUpService } from './signup/signup.service';
+import { HomeRoutingModule } from './home.routing.module';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -18,7 +20,11 @@ import { HomeComponent } from './home.component';
         FormsModule,
         ReactiveFormsModule,
         VMessageModule,
-        RouterModule
+        RouterModule,
+        HomeRoutingModule
+    ],
+    providers: [
+        SignUpService
     ]
 })
 
