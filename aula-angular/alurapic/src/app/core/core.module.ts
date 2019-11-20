@@ -3,8 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptor } from './auth/request.interceptor';
+
+import { LoadingModule } from './../shared/components/loading/loading.module';
+import { MenuModule } from './../shared/components/menu/menu.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { AlertModule } from './../shared/components/alert/alert.module';
+import { ShowIfLoggedModule } from '../shared/directives/show-if-logged/show-if-logged.module';
 
 @NgModule({
     declarations: [
@@ -17,7 +22,11 @@ import { FooterComponent } from './footer/footer.component';
     ],
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+        AlertModule,
+        LoadingModule,
+        MenuModule,
+        ShowIfLoggedModule
     ],
     providers: [
         {

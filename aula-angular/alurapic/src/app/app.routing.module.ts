@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { GlobalErrorComponent } from './errors/global-error/global-error.component';
 import { PhotoListComponent } from './photos/photo-list/photo-list.component';
 import { PhotoFormComponent } from './photos/photo-form/photo-form.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
@@ -19,24 +20,48 @@ const routes: Routes = [
         loadChildren: './home/home.module#HomeModule'
     },    
     { 
-        path: 'user/:userName', 
+        path: 'user/:userName',
+        pathMatch: 'full', 
         component: PhotoListComponent,
         resolve: {
             photos: PhotoListResolver
+        },
+        data: {
+            title: 'Timeline'
         }
     },
     { 
         path: 'p/add', 
         component: PhotoFormComponent,
-        canActivate: [AuthGuard] 
+        canActivate: [AuthGuard],
+        data: {
+            title: 'Photo upload'
+        } 
     },
     { 
         path: 'p/:photoId', 
-        component: PhotoDetailsComponent
+        component: PhotoDetailsComponent,
+        data: {
+            title: 'Photo detail'
+        }
+    },
+    {
+        path: 'error',
+        component: GlobalErrorComponent,
+        data: {
+            title: 'Error'
+        }
+    },
+    {
+        path: 'not-found',
+        component: NotFoundComponent,
+        data: {
+            title: 'Not found'
+        }
     },
     { 
         path: '**', 
-        component: NotFoundComponent 
+        redirectTo: 'not-found'
     }
 ];
 
